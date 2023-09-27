@@ -26,7 +26,7 @@ export const Navbar = () =>{
 
     return(
         <>
-            <Menubar model={navItems}/>
+            <Menubar model={navItems} />
         </>
     )
 }
