@@ -5,7 +5,7 @@ export const Navbar = () =>{
         {
             label:'Home',
             icon:'pi pi-fw pi-home',
-            url:'/'
+            url:'/#home'
         },
         {
             label:'About',
