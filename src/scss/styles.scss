@@ -83,7 +83,6 @@ body {
   &:hover{
     background-color: rgba($colorMenu, 1);
   }
-
 }
 @media screen and (max-width: 960px) {
   .p-menubar .p-menubar-root-list {
@@ -185,13 +184,16 @@ body {
   margin-top: 2rem;
   margin-bottom: 2rem;
 
-  .button {
-    background-color: $colorFont !important;
-    color: $colorMenu !important;
+  .p-button {
     border: 1px solid $colorFont !important;
     position: relative;
     z-index: 1;
     animation: pop-in 1s ease-in-out;
+  }
+
+  .button-normal {
+    background-color: $colorFont !important;
+    color: $colorMenu !important;
 
     &:hover {
       color: $colorFont !important;
@@ -217,15 +219,35 @@ body {
       opacity: 1;
       z-index: -1;
     }
+  }
 
-    &-normal {
-      background-color: $colorFont !important;
+  .button-outlined {
+    background-color: $colorMenu !important;
+    color: $colorFont !important;
+
+    &:hover {
       color: $colorMenu !important;
+      border: 1px solid $colorFont !important;
     }
 
-    &-outlined {
-      background-color: $colorMenu !important;
-      color: $colorFont !important;
+    &:before {
+      content: "";
+      transition: 0.5s all ease;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      opacity: 0;
+      background-color: $colorFont;
+    }
+
+    &:hover:before {
+      transition: 0.5s all ease;
+      left: 0;
+      right: 0;
+      opacity: 1;
+      z-index: -1;
     }
   }
 }
