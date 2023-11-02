@@ -1,6 +1,6 @@
 export const Frontend = () => {
     return(
-        <div className="container">
+        <div id="frontend" className="container">
             <h1>Frontend</h1>
         </div>
     )

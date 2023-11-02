@@ -1,6 +1,6 @@
 export const About = () => {
     return(
-        <div className="container">
+        <div id="about" className="container">
             <h1>About</h1>
         </div>
     )

@@ -1,17 +1,11 @@
+// Variables de colores
 $colorPrimary: #1d1d1d;
 $colorMenu: #181818;
 $colorFont: #fede3f;
-$colorFontWhite: #fff;  
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  width: 100%;
-  height: 100vh;
-}
+$colorFontWhite: #fff;
 
-:root {
+// Selector base para propiedades comunes
+%base {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   width: 100%;
   height: 100%;
@@ -27,222 +21,273 @@ $colorFontWhite: #fff;
   -webkit-text-size-adjust: 100%;
 }
 
+// Estilos generales
+:root {
+  @extend %base;
+  padding: 0 2rem; // Agrega margen a los lados
+}
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  @extend %base;
+  display: flex; // Agrega display flex
+  justify-content: center; // Centra horizontalmente
+  align-items: center; // Centra verticalmente
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
+// Menú
 .p-menubar {
-  margin-top: 15px;
-  margin-right: 15px;
-  margin-left: 15px;
-  margin-bottom: 15px;
+  margin: 15px;
+  padding: 0;
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 15px;
+  right: 15px;
   z-index: 1000;
   border: none;
   border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
-}
-
-.p-menubar {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  background-color: $colorMenu;
+  background-color: rgba($colorMenu, 0.1);
+  transition: background-color 0.3s ease, opacity 0.3s ease; /* Agregar transiciones */
 
-  .p-menubar-button {
+  //mobile
+  &-button {
     background-color: $colorMenu;
     color: $colorFont !important;
   }
 
-  .p-menubar-root-list {
-    background-color: $colorMenu;
-
-    .p-menuitem {
-      background-color: $colorMenu;
-
-      .p-menuitem-text {
-        color: $colorFont !important;
-      }
-      .p-menuitem-icon {
-        color: $colorFont !important;
-      }
-
-      .p-menuitem-link {
-        color: $colorFont !important;
-      }
-    }
-  }
-
-}
-
-.container{
-  width: 100%;
-  height: 100%;
-  grid-gap: 1rem;
-  align-items: center;
-  justify-items: center;
-
-  display: grid;
-}
-
-.containerHome{
-  width: 100%;
-  height: 100%;
-  grid-gap: 1rem;
-  align-items: center;
-  justify-items: center;
-
-  
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "textHome imageHome";
-
-  // media query para pantallas de 960px
-  @media screen and (max-width: 960px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "textHome" "imageHome";
-  }
-
-  // media query para pantallas de 600px
-  @media screen and (max-width: 600px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "textHome" "imageHome";
-  }
-
-  .textHome {
-    grid-area: textHome;
+  &-root-list {
+    padding: 10px !important;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    transition: background-color 0.3s ease; /* Agregar transición al root list */
 
-    h1 {
-      font-size: 3.2em;
-      line-height: 1.1;
-      span{
-        color: $colorFontWhite
-      }
-      animation: leftToRight 1s ease-in-out;
-
-      @keyframes leftToRight {
-        from {
-          transform: translateX(-75px);
-          -webkit-transform: translateX(-75px);
-          -moz-transform: translateX(-75px);
-          -ms-transform: translateX(-75px);
-          -o-transform: translateX(-75px);
+    .p-menuitem { 
+      &-link{
+        .p-menuitem-icon, .p-menuitem-text{
+          color: $colorFont !important;
         }
-        to {
-          transform: translateX(0px);
-          -webkit-transform: translateX(0px);
-          -moz-transform: translateX(0px);
-          -ms-transform: translateX(0px);
-          -o-transform: translateX(0px);
+
+        &:hover{
+          .p-menuitem-icon, .p-menuitem-text{
+            color: $colorFontWhite !important;
+          }
         }
       }
     }
 
-    h1:hover {
-      color: $colorFont;
-      text-shadow: 0 0 1px $colorFont,
-                  0 0 25px $colorFont,
-                  0 0 50px $colorFont,
-    }
+  }
+  &:hover{
+    background-color: rgba($colorMenu, 1);
+  }
 
-    p {
-      font-size: 1.2em;
-      line-height: 1.1;
+}
+@media screen and (max-width: 960px) {
+  .p-menubar .p-menubar-root-list {
+    width: 390%;
+    margin-left: -290%;
+    background-color: $colorMenu;
+    background: $colorMenu;
+  }
+}
+
+// Contenedores
+.container,
+.containerHome {
+  width: 100%;
+  height: 100%;
+  grid-gap: 1rem;
+  align-items: center;
+  justify-items: center;
+  display: grid;
+}
+
+.containerHome {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-areas: "textHome imageHome";
+
+  //de 960 para abajo solo una columna
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "textHome" "imageHome";
+  }
+}
+
+// Texto e imágenes en la página de inicio
+.textHome,
+.imageHome {
+  grid-area: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.textHome {
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+
+    span {
       color: $colorFontWhite;
-      span{
-        color: $colorFont
-      }
-
-      animation: rightToLeft 1s ease-in-out;
-
-      @keyframes rightToLeft {
-        from {
-          transform: translateX(75px);
-          -webkit-transform: translateX(75px);
-          -moz-transform: translateX(75px);
-          -ms-transform: translateX(75px);
-          -o-transform: translateX(75px);
-        }
-        to {
-          transform: translateX(0px);
-          -webkit-transform: translateX(0px);
-          -moz-transform: translateX(0px);
-          -ms-transform: translateX(0px);
-          -o-transform: translateX(0px);
-        }
-      }
     }
 
-    p:hover {
+    animation: leftToRight 1s ease-in-out;
+
+    &:hover {
       color: $colorFont;
-      span{
+      text-shadow: 0 0 1px $colorFont, 0 0 25px $colorFont, 0 0 50px $colorFont;
+    }
+  }
+
+  p {
+    font-size: 1.2em;
+    line-height: 1.1;
+    color: $colorFontWhite;
+
+    span {
+      color: $colorFont;
+    }
+
+    animation: rightToLeft 1s ease-in-out;
+
+    &:hover {
+      color: $colorFont;
+      span {
         color: $colorFontWhite;
       }
     }
-
   }
+}
 
-  .imageHome {
-    grid-area: imageHome;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.imageHome {
+  img {
+    width: 400px;
+    height: 400px;
+    animation: bounce 5s infinite;
+  }
+}
 
-    img {
-      width: 400px;
-      height: 400px;
-      //animationimagebounce4corners2sinfinite:;
-      animation: bounce 5s infinite;
 
-      @keyframes bounce 
-      {
-        0% {
-          transform: translate(0, 0);
-        }
-        25% {
-          transform: translate(0, 50px);
-        }
-        50% {
-          transform: translate(50px, 30px);
-        }
-        75% {
-          transform: translate(30px, 0);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
-      }
+// Botones
+.buttonsContainer {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  grid-gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  .button {
+    background-color: $colorFont !important;
+    color: $colorMenu !important;
+    border: 1px solid $colorFont !important;
+    position: relative;
+    z-index: 1;
+    animation: pop-in 1s ease-in-out;
+
+    &:hover {
+      color: $colorFont !important;
+      border: 1px solid $colorFont !important;
+    }
+
+    &:before {
+      content: "";
+      transition: 0.5s all ease;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      opacity: 0;
+      background-color: $colorMenu;
+    }
+
+    &:hover:before {
+      transition: 0.5s all ease;
+      left: 0;
+      right: 0;
+      opacity: 1;
+      z-index: -1;
+    }
+
+    &-normal {
+      background-color: $colorFont !important;
+      color: $colorMenu !important;
+    }
+
+    &-outlined {
+      background-color: $colorMenu !important;
+      color: $colorFont !important;
     }
   }
 }
 
-@media screen and (max-width: 960px) {
-  .p-menubar .p-menubar-root-list {
-    width: 180%;
-    margin-left: -80%;
+// Keyframes
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
+@keyframes bounce {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, 50px);
+  }
+  50% {
+    transform: translate(50px, 30px);
+  }
+  75% {
+    transform: translate(30px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
 
+@keyframes rightToLeft {
+  from {
+    transform: translateX(75px);
+    -webkit-transform: translateX(75px);
+    -moz-transform: translateX(75px);
+    -ms-transform: translateX(75px);
+    -o-transform: translateX(75px);
+  }
+  to {
+    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+  }
+}
+
+@keyframes leftToRight {
+  from {
+    transform: translateX(-75px);
+    -webkit-transform: translateX(-75px);
+    -moz-transform: translateX(-75px);
+    -ms-transform: translateX(-75px);
+    -o-transform: translateX(-75px);
+  }
+  to {
+    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+  }
+}
