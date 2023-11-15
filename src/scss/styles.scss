@@ -7,8 +7,6 @@ $colorFontWhite: #fff;
 // Selector base para propiedades comunes
 %base {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  width: 100%;
-
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -24,7 +22,9 @@ $colorFontWhite: #fff;
 // Estilos generales
 :root {
   @extend %base;
-  padding: 0 2rem; // Agrega margen a los lados
+  padding: 0; // Agrega margen a los lados
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -37,7 +37,8 @@ body {
   display: flex; // Agrega display flex
   justify-content: center; // Centra horizontalmente
   align-items: center; // Centra verticalmente
-
+  width: 100%;
+  padding: 0;
   scroll-behavior: smooth;
 }
 
@@ -76,7 +77,7 @@ body::-webkit-scrollbar-thumb {
   border: none;
   border-radius: 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  background-color: rgba($colorMenu, 0.1);
+  background-color: rgba($colorMenu, 0.8);
   transition: background-color 0.3s ease, opacity 0.3s ease; /* Agregar transiciones */
 
   //mobile
@@ -125,21 +126,70 @@ body::-webkit-scrollbar-thumb {
 .containerHome {
   min-width: 100%;
   min-height: 100vh;
-  grid-gap: 1rem;
   justify-items: center;
   display: grid;
 }
 
+.parallax {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.containerHome.parallax {
+  position: relative;
+  background-image: url("../assets/moon.jpg");
+}
+
+.containerHome.parallax::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Ajusta el valor alfa según tu preferencia */
+}
+
 .containerHome {
+  display: grid;
   align-items: center;
   justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-areas: "textHome imageHome";
 
   //de 960 para abajo solo una columna
-  @media (max-width: 960px) {
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     grid-template-areas: "textHome" "imageHome";
+  }
+
+  margin: 0; /* Elimina los márgenes externos */
+  padding: 0; /* Elimina los márgenes internos */
+  box-sizing: border-box; /* Asegura que el tamaño incluya el relleno y el borde */
+  
+  .content{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "textHome imageHome";
+    grid-gap: 1rem;
+    justify-items: center;
+    display: grid;
+
+    /* Añade márgenes a los lados */
+    margin-left: 15rem;
+    margin-right: 15rem;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      grid-template-areas: "textHome" "imageHome";
+
+      /* Ajusta los márgenes en dispositivos móviles si es necesario */
+      margin-left: 10px;
+      margin-right: 10px;
+    }
   }
 }
 
@@ -155,6 +205,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .textHome {
+  z-index: 1;
   h1 {
     font-size: 3.2em;
     line-height: 1.1;
@@ -195,7 +246,9 @@ body::-webkit-scrollbar-thumb {
   img {
     width: 400px;
     height: 400px;
-    animation: bounce 5s infinite;
+    
+    animation:jello-vertical 10s infinite;
+    
   }
 }
 
@@ -279,6 +332,10 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+.container{
+  padding: 3rem 0;
+}
+
 // Keyframes
 @keyframes pop-in {
   0% {
@@ -289,21 +346,33 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-@keyframes bounce {
+@keyframes jello-vertical {
   0% {
-    transform: translate(0, 0);
+    transform: scale3d(1, 1, 1)
   }
-  25% {
-    transform: translate(0, 50px);
+
+  3% {
+    transform: scale3d(.75, 1.25, 1)
   }
-  50% {
-    transform: translate(50px, 30px);
+
+  4% {
+    transform: scale3d(1.25, .75, 1)
   }
-  75% {
-    transform: translate(30px, 0);
+
+  5% {
+    transform: scale3d(.85, 1.15, 1)
   }
-  100% {
-    transform: translate(0, 0);
+
+  6% {
+    transform: scale3d(1.05, .95, 1)
+  }
+
+  7% {
+    transform: scale3d(.95, 1.05, 1)
+  }
+
+  10% {
+    transform: scale3d(1, 1, 1)
   }
 }
 
