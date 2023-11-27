@@ -36,7 +36,7 @@ body {
   @extend %base;
   display: flex; // Agrega display flex
   justify-content: center; // Centra horizontalmente
-  align-items: center; // Centra verticalmente
+  //align-items: center; // Centra verticalmente
   width: 100%;
   padding: 0;
   scroll-behavior: smooth;
@@ -65,15 +65,16 @@ body::-webkit-scrollbar-thumb {
     transparent
   );
 }
-
+.linkAnimated{
+  text-decoration: none;
+  text-decoration: inherit;
+  color: inherit;
+}
 // Menú
 .p-menubar {
   margin: 15px;
   padding: 0;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 1000;
+  
   border: none;
   border-radius: 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
@@ -89,6 +90,7 @@ body::-webkit-scrollbar-thumb {
   &-root-list {
     padding: 10px !important;
     display: flex;
+    align-items: start;
     flex-direction: column;
     transition: background-color 0.3s ease; /* Agregar transición al root list */
 
@@ -201,11 +203,12 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  
 }
 
 .textHome {
   z-index: 1;
+  text-justify: inter-word;
   h1 {
     font-size: 3.2em;
     line-height: 1.1;
@@ -214,12 +217,6 @@ body::-webkit-scrollbar-thumb {
       color: $colorFontWhite;
     }
 
-    animation: leftToRight 1s ease-in-out;
-
-    &:hover {
-      color: $colorFont;
-      text-shadow: 0 0 1px $colorFont, 0 0 25px $colorFont, 0 0 50px $colorFont;
-    }
   }
 
   p {
@@ -231,14 +228,7 @@ body::-webkit-scrollbar-thumb {
       color: $colorFont;
     }
 
-    animation: rightToLeft 1s ease-in-out;
-
-    &:hover {
-      color: $colorFont;
-      span {
-        color: $colorFontWhite;
-      }
-    }
+    
   }
 }
 
@@ -268,7 +258,7 @@ body::-webkit-scrollbar-thumb {
     border: 1px solid $colorFont !important;
     position: relative;
     z-index: 1;
-    animation: pop-in 1s ease-in-out;
+    
   }
 
   .button-normal {
@@ -373,39 +363,5 @@ body::-webkit-scrollbar-thumb {
 
   10% {
     transform: scale3d(1, 1, 1)
-  }
-}
-
-@keyframes rightToLeft {
-  from {
-    transform: translateX(75px);
-    -webkit-transform: translateX(75px);
-    -moz-transform: translateX(75px);
-    -ms-transform: translateX(75px);
-    -o-transform: translateX(75px);
-  }
-  to {
-    transform: translateX(0px);
-    -webkit-transform: translateX(0px);
-    -moz-transform: translateX(0px);
-    -ms-transform: translateX(0px);
-    -o-transform: translateX(0px);
-  }
-}
-
-@keyframes leftToRight {
-  from {
-    transform: translateX(-75px);
-    -webkit-transform: translateX(-75px);
-    -moz-transform: translateX(-75px);
-    -ms-transform: translateX(-75px);
-    -o-transform: translateX(-75px);
-  }
-  to {
-    transform: translateX(0px);
-    -webkit-transform: translateX(0px);
-    -moz-transform: translateX(0px);
-    -ms-transform: translateX(0px);
-    -o-transform: translateX(0px);
   }
 }

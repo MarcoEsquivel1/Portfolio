@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Menubar } from 'primereact/menubar';
 
 export const Navbar = () =>{
@@ -24,9 +25,13 @@ export const Navbar = () =>{
         }
     ]
 
+    const Menu = <Menubar model={navItems} />
+
     return(
         <>
-            <Menubar model={navItems} />
+            <motion.div layout initial={{ position: 'fixed', top: '500px', right: '15px', zIndex: 1000, opacity: 0, scale: 0.3 }} animate={{ position: 'fixed', top: '15px', right: '15px', zIndex: 1000, opacity:1, scale: 1 }} transition={{ duration: 0.3 }}>
+                {Menu}
+            </motion.div>
         </>
     )
 }

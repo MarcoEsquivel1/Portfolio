@@ -15,7 +15,7 @@ function App() {
       <About />
       <Frontend />
       <Backend />
-      <Navbar />
+        <Navbar />
     </>
   )
 }
