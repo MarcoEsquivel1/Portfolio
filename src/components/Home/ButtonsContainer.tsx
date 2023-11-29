@@ -4,6 +4,9 @@ export const ButtonsContainer = () => {
     const handleGithub = () => {
         window.open('https://github.com/MarcoEsquivel1' , '_blank');
     }
+    const handleLinkedin = () => {
+        window.open('https://www.linkedin.com/in/marco-rene-esquivel-juarez/' , '_blank');
+    }
 
     const handleCV = () => {
         fetch('CVMarcoEsquivel.pdf').then( response => response.blob()).then( blob => {
@@ -18,6 +21,8 @@ export const ButtonsContainer = () => {
         <div className='buttonsContainer'>
             <Button label="Go to repository" className="button-normal" onClick={handleGithub} icon="pi pi-github" raised />
             <Button label="Download CV" className="button-outlined" onClick={handleCV} icon="pi pi-download" raised />
+            <Button label="" className="button-outlined" onClick={handleLinkedin} icon="pi pi-linkedin" raised />
+            <Button label="" className="button-outlined" onClick={handleLinkedin} icon="pi pi-globe" raised />
         </div>
     )
 }
