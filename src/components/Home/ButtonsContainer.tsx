@@ -22,7 +22,6 @@ export const ButtonsContainer = () => {
             <Button label="Go to repository" className="button-normal" onClick={handleGithub} icon="pi pi-github" raised />
             <Button label="Download CV" className="button-outlined" onClick={handleCV} icon="pi pi-download" raised />
             <Button label="" className="button-outlined" onClick={handleLinkedin} icon="pi pi-linkedin" raised />
-            <Button label="" className="button-outlined" onClick={handleLinkedin} icon="pi pi-globe" raised />
         </div>
     )
 }
