@@ -25,6 +25,26 @@ $colorFontWhite: #fff;
   padding: 0; // Agrega margen a los lados
   width: 100%;
   height: 100%;
+
+  --shadow-color: 225deg 51% 0%;
+  --shadow-elevation-low:
+    0.5px 0.4px 0.6px hsl(var(--shadow-color) / 0.47),
+    0.7px 0.6px 0.9px -1.7px hsl(var(--shadow-color) / 0.39),
+    1.9px 1.7px 2.5px -3.3px hsl(var(--shadow-color) / 0.31);
+  --shadow-elevation-medium:
+    0.5px 0.4px 0.6px hsl(var(--shadow-color) / 0.5),
+    1.3px 1.1px 1.7px -1.1px hsl(var(--shadow-color) / 0.44),
+    3.7px 3.2px 4.9px -2.2px hsl(var(--shadow-color) / 0.37),
+    9.6px 8.3px 12.7px -3.3px hsl(var(--shadow-color) / 0.31);
+  --shadow-elevation-high:
+    0.5px 0.4px 0.6px hsl(var(--shadow-color) / 0.46),
+    2.1px 1.8px 2.8px -0.5px hsl(var(--shadow-color) / 0.43),
+    4px 3.5px 5.3px -1px hsl(var(--shadow-color) / 0.4),
+    7.2px 6.2px 9.5px -1.4px hsl(var(--shadow-color) / 0.37),
+    12.4px 10.7px 16.3px -1.9px hsl(var(--shadow-color) / 0.35),
+    20.6px 17.7px 27.1px -2.4px hsl(var(--shadow-color) / 0.32),
+    32.4px 27.9px 42.7px -2.9px hsl(var(--shadow-color) / 0.29),
+    48.9px 42.1px 64.4px -3.3px hsl(var(--shadow-color) / 0.26);
 }
 
 body {
@@ -130,6 +150,8 @@ body::-webkit-scrollbar-thumb {
   min-height: 100vh;
   justify-items: center;
   display: grid;
+
+  
 }
 
 .parallax {
@@ -163,9 +185,11 @@ body::-webkit-scrollbar-thumb {
   grid-template-areas: "textHome imageHome";
 
   //de 960 para abajo solo una columna
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     grid-template-columns: 1fr;
     grid-template-areas: "textHome" "imageHome";
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   margin: 0; /* Elimina los márgenes externos */
@@ -183,6 +207,13 @@ body::-webkit-scrollbar-thumb {
     /* Añade márgenes a los lados */
     margin-left: 15rem;
     margin-right: 15rem;
+
+    @media (max-width: 1440px) {   
+
+      /* Ajusta los márgenes en dispositivos móviles si es necesario */
+      margin-left: 7rem;
+      margin-right: 7rem;
+    }
 
     @media (max-width: 1024px) {
       grid-template-columns: 1fr;
@@ -202,19 +233,33 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  
+  align-items: start;
+  //espacio entre los elementos
+  grid-gap: 1rem;
+
+  @media screen and (max-width: 1024px) {
+    align-items: center;
+  }
 }
 
 .textHome {
   z-index: 1;
+  text-align: start;
   text-justify: inter-word;
+  text-shadow: 3px 5px 2px black;
+  
+  
   h1 {
-    font-size: 3.2em;
+    font-size: 5.2em;
     line-height: 1.1;
+    
 
     span {
       color: $colorFontWhite;
+    }
+
+    @media screen and (max-width: 1024px) {
+      font-size: 3.2em;
     }
 
   }
@@ -224,10 +269,16 @@ body::-webkit-scrollbar-thumb {
     line-height: 1.1;
     color: $colorFontWhite;
 
+
     span {
       color: $colorFont;
     }
+    
+  }
 
+  @media screen and (max-width: 1024px) {
+    
+      text-align: center;
     
   }
 }
@@ -236,9 +287,8 @@ body::-webkit-scrollbar-thumb {
   img {
     width: 400px;
     height: 400px;
-    
     animation:jello-vertical 10s infinite;
-    
+    filter: drop-shadow( 10px 10px 30px rgba(1,1,1));
   }
 }
 
@@ -247,6 +297,7 @@ body::-webkit-scrollbar-thumb {
   margin: 10px;
   display: flex;
   flex-direction: row;
+  align-self: center;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -258,7 +309,7 @@ body::-webkit-scrollbar-thumb {
     border: 1px solid $colorFont !important;
     position: relative;
     z-index: 1;
-    
+    box-shadow: var(--shadow-elevation-high);
   }
 
   .button-normal {
