@@ -1,10 +1,11 @@
+/* eslint-disable react-refresh/only-export-components */
 import pcImage from '../assets//pc.png';
 import { ButtonsContainer } from '../components/Home/ButtonsContainer';
 import { skills } from '../data/skills';
 import { motion } from "framer-motion"
+import animatedTransition from '../animation/animatedTransition';
 
-export const Home = () => {
-
+export const Home = animatedTransition(() => {
     return(
         <div id='home' className="containerHome parallax">
             <div className="content">
@@ -32,4 +33,4 @@ export const Home = () => {
             </div>
         </div>
     )
-}
+})
