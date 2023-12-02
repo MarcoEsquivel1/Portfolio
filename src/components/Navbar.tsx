@@ -9,7 +9,7 @@ export const Navbar = () =>{
             url:'/#'
         },
         {
-            label:'About',
+            label:'About Me',
             icon:'pi pi-fw pi-user',
             url:'/#about'
         },

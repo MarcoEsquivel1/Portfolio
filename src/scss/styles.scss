@@ -61,6 +61,7 @@ body {
   padding: 0;
   scroll-behavior: smooth;
 }
+
 .slide-in{
   position: fixed;
   top: 0;
@@ -106,11 +107,13 @@ body::-webkit-scrollbar-thumb {
     transparent
   );
 }
+
 .linkAnimated{
   text-decoration: none;
   text-decoration: inherit;
   color: inherit;
 }
+
 // Menú
 .p-menubar {
   margin: 15px;
@@ -166,13 +169,47 @@ body::-webkit-scrollbar-thumb {
 
 // Contenedores
 .container,
+.containerAbout,
 .containerHome {
   min-width: 100vw;
   min-height: 100vh;
   justify-items: center;
   display: grid;
-
   
+
+  text-align: start;
+  text-justify: inter-word;
+  text-shadow: 3px 5px 3px black;
+
+  h1 {
+    font-size: 5.2em;
+    line-height: 1.1; 
+
+    span {
+      color: $colorFontWhite;
+    }
+
+    @media screen and (max-width: 1024px) {
+      font-size: 3.2em;
+    }
+
+  }
+
+  p {
+    font-size: 1.3em;
+    line-height: 1.1;
+    color: $colorFontWhite;
+
+
+    span {
+      color: $colorFont;
+    }
+    
+  }
+}
+
+.container{
+  padding: 3rem 0;
 }
 
 .parallax {
@@ -244,158 +281,232 @@ body::-webkit-scrollbar-thumb {
       margin-left: 10px;
       margin-right: 10px;
     }
-  }
-}
-
-// Texto e imágenes en la página de inicio
-.textHome,
-.imageHome {
-  grid-area: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  //espacio entre los elementos
-  grid-gap: 1rem;
-
-  @media screen and (max-width: 1024px) {
-    align-items: center;
-  }
-}
-
-.textHome {
-  z-index: 1;
-  text-align: start;
-  text-justify: inter-word;
-  text-shadow: 3px 5px 2px black;
-  
-  
-  h1 {
-    font-size: 5.2em;
-    line-height: 1.1;
     
-
-    span {
-      color: $colorFontWhite;
+    .textHome,
+    .imageHome {
+      grid-area: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      //espacio entre los elementos
+      grid-gap: 1rem;
+    
+      @media screen and (max-width: 1024px) {
+        align-items: center;
+      }
     }
-
-    @media screen and (max-width: 1024px) {
-      font-size: 3.2em;
-    }
-
-  }
-
-  p {
-    font-size: 1.2em;
-    line-height: 1.1;
-    color: $colorFontWhite;
-
-
-    span {
-      color: $colorFont;
+    // Texto e imágenes en la página de inicio
+    
+    .textHome {
+      z-index: 10;
+      
+    
+      @media screen and (max-width: 1024px) {
+        
+          text-align: center;
+        
+      }
     }
     
-  }
-
-  @media screen and (max-width: 1024px) {
+    .imageHome {
+      img {
+        width: 400px;
+        height: 400px;
+        animation:jello-vertical 10s infinite;
+        filter: drop-shadow( 10px 10px 30px rgba(1,1,1));
+        z-index: 10;
     
+        @media screen and (max-width: 1024px) {
+          width: 350px;
+          height: 350px;     
+        }
+    
+        @media screen and (max-width: 768px) {
+          width: 250px;
+          height: 250px;     
+        }
+      }
+    }
+    
+    // Botones
+    .buttonsContainer {
+      margin: 0px;
+      display: flex;
+      flex-direction: row;
+      align-self: center;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      grid-gap: 1rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
     
+      .p-button {
+        border: 1px solid $colorFont !important;
+        position: relative;
+        z-index: 1;
+        box-shadow: var(--shadow-elevation-high);
+      }
+    
+      .button-normal {
+        background-color: $colorFont !important;
+        color: $colorMenu !important;
+    
+        &:hover {
+          color: $colorFont !important;
+          border: 1px solid $colorFont !important;
+        }
+    
+        &:before {
+          content: "";
+          transition: 0.5s all ease;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          right: 50%;
+          bottom: 0;
+          opacity: 0;
+          background-color: $colorMenu;
+        }
+    
+        &:hover:before {
+          transition: 0.5s all ease;
+          left: 0;
+          right: 0;
+          opacity: 1;
+          z-index: -1;
+        }
+      }
+    
+      .button-outlined {
+        background-color: $colorMenu !important;
+        color: $colorFont !important;
+    
+        &:hover {
+          color: $colorMenu !important;
+          border: 1px solid $colorFont !important;
+        }
+    
+        &:before {
+          content: "";
+          transition: 0.5s all ease;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          right: 50%;
+          bottom: 0;
+          opacity: 0;
+          background-color: $colorFont;
+        }
+    
+        &:hover:before {
+          transition: 0.5s all ease;
+          left: 0;
+          right: 0;
+          opacity: 1;
+          z-index: -1;
+        }
+      }
+    }
   }
 }
 
-.imageHome {
-  img {
-    width: 400px;
-    height: 400px;
-    animation:jello-vertical 10s infinite;
-    filter: drop-shadow( 10px 10px 30px rgba(1,1,1));
-  }
-}
 
-// Botones
-.buttonsContainer {
-  margin: 10px;
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  justify-content: center;
+.containerAbout{
+  display: grid;
   align-items: center;
-  text-align: center;
-  grid-gap: 1rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-areas: "textAbout imageAbout";
 
-  .p-button {
-    border: 1px solid $colorFont !important;
-    position: relative;
-    z-index: 1;
-    box-shadow: var(--shadow-elevation-high);
+  //de 960 para abajo solo una columna
+  @media (max-width: 1023px) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "textAbout" "imageAbout";
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
-  .button-normal {
-    background-color: $colorFont !important;
-    color: $colorMenu !important;
+  margin: 0; /* Elimina los márgenes externos */
+  padding: 0; /* Elimina los márgenes internos */
+  box-sizing: border-box; /* Asegura que el tamaño incluya el relleno y el borde */
+  
+  .content{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "textAbout imageAbout";
+    grid-gap: 1rem;
+    justify-items: center;
+    display: grid;
 
-    &:hover {
-      color: $colorFont !important;
-      border: 1px solid $colorFont !important;
+    /* Añade márgenes a los lados */
+    margin-left: 15rem;
+    margin-right: 15rem;
+
+    @media (max-width: 1440px) {   
+
+      /* Ajusta los márgenes en dispositivos móviles si es necesario */
+      margin-left: 7rem;
+      margin-right: 7rem;
     }
 
-    &:before {
-      content: "";
-      transition: 0.5s all ease;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      right: 50%;
-      bottom: 0;
-      opacity: 0;
-      background-color: $colorMenu;
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      grid-template-areas: "textHome" "imageHome";
+
+      /* Ajusta los márgenes en dispositivos móviles si es necesario */
+      margin-left: 10px;
+      margin-right: 10px;
+
+    }  
+
+    .textAbout{
+      z-index: 10;
+      h1{
+        margin-top: 0;
+      }
+
+      @media (max-width: 1024px) {
+        padding-top: 2rem;
+
+        h1{
+          text-align: center;
+          margin-bottom: 3rem;
+        }
+      }
     }
 
-    &:hover:before {
-      transition: 0.5s all ease;
-      left: 0;
-      right: 0;
-      opacity: 1;
-      z-index: -1;
+    .imageAbout{
+      display: flex;
+      justify-content: center;
+      
+      .circle{
+        //centra la imagen
+        justify-content: center;
+        width: min-content;
+        z-index: 10;
+        
+        img{
+          object-fit: contain;
+          width: 380px;
+          background: $colorFont;
+          border-radius: 100px;
+          display:block;
+          //fondo gris, circular y sombra
+          z-index: 10;
+    
+          @media (max-width: 1024px) {
+            width: 300px;
+            height: auto;
+          }
+      
+        }
+      }
+
     }
+
   }
-
-  .button-outlined {
-    background-color: $colorMenu !important;
-    color: $colorFont !important;
-
-    &:hover {
-      color: $colorMenu !important;
-      border: 1px solid $colorFont !important;
-    }
-
-    &:before {
-      content: "";
-      transition: 0.5s all ease;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      right: 50%;
-      bottom: 0;
-      opacity: 0;
-      background-color: $colorFont;
-    }
-
-    &:hover:before {
-      transition: 0.5s all ease;
-      left: 0;
-      right: 0;
-      opacity: 1;
-      z-index: -1;
-    }
-  }
-}
-
-.container{
-  padding: 3rem 0;
 }
 
 // Keyframes

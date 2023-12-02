@@ -30,7 +30,7 @@ export const ParticlesContainer = () => {
                     mode: "push",
                 },
                 onHover: {
-                    enable: true,
+                    enable: false,
                     mode: "repulse",
                 },
                 resize: true,
@@ -40,7 +40,7 @@ export const ParticlesContainer = () => {
                     quantity: 90,
                 },
                 repulse: {
-                    distance: 200,
+                    distance: 100,
                     duration: 0.4,
                 },
             },
@@ -51,6 +51,10 @@ export const ParticlesContainer = () => {
             },
             links: {
                 enable: false,
+                color: '#fff',
+                distance: 150,
+                opacity: 0.4,
+                width: 1,
             },
             collisions:{
                 enable: true, 
