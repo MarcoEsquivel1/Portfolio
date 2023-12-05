@@ -243,7 +243,7 @@ body::-webkit-scrollbar-thumb {
   grid-template-areas: "textHome imageHome";
 
   //de 960 para abajo solo una columna
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     grid-template-areas: "textHome" "imageHome";
     padding-left: 1.5rem;
@@ -301,6 +301,7 @@ body::-webkit-scrollbar-thumb {
         //contenedor para logos con psition absolute
         position: relative;
         padding: 100px;
+        margin-bottom: 2rem;
       
         .pc{
           position: sticky;
@@ -351,7 +352,6 @@ body::-webkit-scrollbar-thumb {
 
         @media screen and (max-width: 768px) {
           padding: 50px;
-          margin-bottom: 10px;
           .pc{
             width: 125px;
           }
@@ -499,7 +499,7 @@ body::-webkit-scrollbar-thumb {
   grid-template-areas: "textAbout imageAbout";
 
   //de 960 para abajo solo una columna
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     grid-template-areas: "textAbout" "imageAbout";
     padding-left: 1.5rem;
