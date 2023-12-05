@@ -350,7 +350,7 @@ body::-webkit-scrollbar-thumb {
           z-index: 1;  
         }
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 767px) {
           padding: 50px;
           .pc{
             width: 125px;
@@ -396,7 +396,7 @@ body::-webkit-scrollbar-thumb {
           height: 350px;     
         }
     
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 767px) {
           width: 250px;
           height: 250px;     
         }
